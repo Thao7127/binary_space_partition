@@ -45,3 +45,10 @@ expect for degenerate inputs.
 `Hyperplane` normalises its normal on construction and scales the offset
 accordingly; passing a non-unit normal is fine and yields the same plane. A
 near-zero normal raises `ValueError`.
+
+## Performance
+
+The window keeps a bounded buffer, so `push` is constant time and memory does not
+grow with the length of the stream. `peak` and `trough` are linear in the window
+size, which is the trade that keeps `push` cheap.
+
